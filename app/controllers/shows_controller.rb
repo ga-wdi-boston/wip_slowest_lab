@@ -6,7 +6,8 @@ class ShowsController < ApplicationController
         :show_id => @show.id).exists?
     end
   end
+
   def index
-    @shows = Show.includes(:users).limit(100)
+    @shows = Show.includes(:users).page(params[:page]).per(50)
   end
 end
